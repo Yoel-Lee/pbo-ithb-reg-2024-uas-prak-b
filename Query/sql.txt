@@ -1,0 +1,62 @@
+
+CREATE TABLE `users` (
+  `id_user` int(11) NOT NULL,
+  `name` varchar(20) NOT NULL,
+  `phone_number` varchar(12) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+INSERT INTO `users` (`id_user`, `name`, `phone_number`, `address`, `password`) VALUES
+(1, 'yoel', '081111111111', 'Dago', 'yoel1'),
+(2, 'vb', '082222222222', 'Dipatiukur', 'vb1'),
+(3, 'jordan', '083333333333', 'MekarWangi', 'jordan1');
+
+
+CREATE TABLE `transaksi` (
+  `id_transaksi` int(11) NOT NULL,
+  `nama` varchar(255) NOT NULL,
+  `alamat` varchar(255) NOT NULL,
+  `no_telp` varchar(15) NOT NULL,
+  `berat` decimal(10,2) NOT NULL,
+  `kategori` varchar(100) NOT NULL,
+  `cost` decimal(10,2) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+
+INSERT INTO `transaksi` (`id_transaksi`, `nama`, `alamat`, `no_telp`, `berat`, `kategori`, `cost`, `created_at`) VALUES
+(1, 'Titan', 'Jl Titan 1 no 9', '081234567654', 10.00, 'House Moving', 100000.00, '2025-01-10 10:35:32');
+
+
+
+
+CREATE TABLE `kategori_pengiriman` (
+  `id_kategori` int(11) NOT NULL,
+  `kategori` varchar(100) NOT NULL,
+  `fee` decimal(10,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+INSERT INTO `kategori_pengiriman` (`id_kategori`, `kategori`, `fee`) VALUES
+(1, 'Building Materials', 5000.00),
+(2, 'House Moving', 10000.00),
+(3, 'Instant Delivery', 2000.00);
+
+
+
+CREATE TABLE `delivery_status` (
+  `id` int(11) NOT NULL,
+  `transaction_id` int(11) DEFAULT NULL,
+  `status` varchar(50) DEFAULT NULL,
+  `current_position` varchar(100) DEFAULT NULL,
+  `evidence` varchar(255) DEFAULT NULL,
+  `updated_by` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+
+INSERT INTO `delivery_status` (`id`, `transaction_id`, `status`, `current_position`, `evidence`, `updated_by`) VALUES
+(1, 1, 'PENDING', 'rajwali', 'C/::img/evidence.jpg', 'Bryan');
